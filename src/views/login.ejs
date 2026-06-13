@@ -1,0 +1,22 @@
+<%- include("partials/header", { title, user, siteName, year }) %>
+
+<div class="blockform">
+  <h2><span>Login</span></h2>
+  <div class="box">
+    <form method="post" action="/login">
+      <div class="inform">
+        <% if (error) { %><div class="forminfo contains-error"><p><%= error %></p></div><% } %>
+        <fieldset>
+          <legend>Enter your username and password</legend>
+          <div class="infldset">
+            <label>Username<br><input class="longinput" type="text" name="username" autocomplete="username"></label>
+            <label>Password<br><input class="longinput" type="password" name="password" autocomplete="current-password"></label>
+          </div>
+        </fieldset>
+      </div>
+      <p class="buttons"><input type="submit" value="Login"></p>
+    </form>
+  </div>
+</div>
+
+<%- include("partials/footer", { year }) %>

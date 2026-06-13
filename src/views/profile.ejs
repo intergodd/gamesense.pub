@@ -1,0 +1,28 @@
+<%- include("partials/header", { title, user, siteName, year }) %>
+
+<div id="viewprofile" class="block">
+  <h2><span>Profile: <%= profile.username %></span></h2>
+  <div class="box">
+    <div class="inbox">
+      <dl>
+        <dt>Username</dt>
+        <dd><strong class="usergroup-1"><%= profile.username %></strong></dd>
+
+        <dt>Title</dt>
+        <dd><%= profile.role %></dd>
+
+        <dt>Registered</dt>
+        <dd><%= profile.created_at %></dd>
+
+        <dt>Topics</dt>
+        <dd><%= stats.threads %></dd>
+
+        <dt>Posts</dt>
+        <dd><%= stats.posts %></dd>
+      </dl>
+      <div class="clearer"></div>
+    </div>
+  </div>
+</div>
+
+<%- include("partials/footer", { year }) %>

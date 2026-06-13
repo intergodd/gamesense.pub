@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="ROBOTS" content="NOINDEX, FOLLOW">
+  <title><%= title %> / GameSense</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:900,400,300" rel="stylesheet">
+  <link rel="stylesheet" href="/css/cobalt.css">
+</head>
+<body>
+<div id="punindex" class="pun">
+  <div class="top-box"></div>
+  <div class="punwrap">
+
+    <div id="brdheader" class="block gs-header">
+      <div class="box">
+        <div id="brdtitle" class="inbox">
+          <h1><a href="/">game<span>sense</span></a></h1>
+          <div id="brddesc"></div>
+        </div>
+
+        <div id="brdmenu" class="inbox">
+          <ul>
+            <li id="navnotifications"><span class="fake-link bell" title="Notifications"></span></li>
+            <li id="navindex" class="isactive"><a href="/">Index</a></li>
+            <% if (!user) { %>
+              <li id="navregister"><a href="/register">Register</a></li>
+              <li id="navlogin"><a href="/login">Login</a></li>
+            <% } else { %>
+              <li id="navsearch"><a href="/search">Search</a></li>
+              <li id="navprofile"><a href="/user/<%= user.username %>">Profile</a></li>
+              <li id="navpm"><a href="/pm">PM</a></li>
+              <li id="navpremium"><a href="/premium">Premium</a></li>
+              <li>
+                <form action="/logout" method="post" class="inline-form">
+                  <button type="submit" class="link-button">Logout</button>
+                </form>
+              </li>
+            <% } %>
+          </ul>
+        </div>
+
+        <div id="brdwelcome" class="inbox gs-welcome">
+          <% if (user) { %>
+            <p class="conl">
+              Logged in as <strong><%= user.username %></strong><br>
+              <strong>Premium (Counter-Strike 2)</strong> until 2026-07-15 18:54:03
+              <a href="/premium">[extend subscription]</a><br>
+              <a href="/faq">Frequently asked questions</a> •
+              <a href="/common-issues">Common issues</a> •
+              <a href="/discord">Support discord</a>
+            </p>
+          <% } else { %>
+            <p class="conl">You are not logged in.</p>
+          <% } %>
+          <div class="clearer"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="brdmain">

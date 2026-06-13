@@ -1,0 +1,146 @@
+<%- include("partials/header", { title, user, siteName, year }) %>
+
+<div id="regform" class="blockform">
+  <h2><span>Register</span></h2>
+  <div class="box">
+    <form id="register" method="post" action="/register">
+      <% if (error) { %>
+        <div class="forminfo contains-error"><p><%= error %></p></div>
+      <% } %>
+
+      <div class="inform">
+        <fieldset>
+          <legend>Your username must be alphanumeric between 3 and 25 characters long</legend>
+          <div class="infldset">
+            <label class="required">
+              <strong>Username <span>(Required)</span></strong><br>
+              <input type="text" name="username" value="" size="25" maxlength="25" autocomplete="username"><br>
+            </label>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="inform">
+        <fieldset>
+          <legend>Please enter and confirm your chosen password</legend>
+          <div class="infldset">
+            <label class="conl required">
+              <strong>Password <span>(Required)</span></strong><br>
+              <input type="password" name="password" maxlength="100" size="16" autocomplete="new-password"><br>
+            </label>
+            <label class="conl required">
+              <strong>Confirm password <span>(Required)</span></strong><br>
+              <input type="password" name="password_confirm" maxlength="100" size="16" autocomplete="new-password"><br>
+            </label>
+            <p class="clearb">Passwords must be at least 6 characters long. Passwords are case sensitive.</p>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="inform">
+        <fieldset>
+          <legend>Enter a valid email address</legend>
+          <div class="infldset">
+            <label class="required">
+              <strong>Email <span>(Required)</span></strong><br>
+              <input type="text" name="email" value="" size="50" maxlength="80" autocomplete="email"><br>
+            </label>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="inform">
+        <fieldset>
+          <legend>You must be invited to join this forum</legend>
+          <div class="infldset">
+            <label class="required">
+              <strong>Invitation code</strong><br>
+              <input type="text" name="invite_key" value="<%= invite %>" size="50" maxlength="48"><br>
+            </label>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="inform">
+        <fieldset>
+          <legend>Set your localisation options</legend>
+          <div class="infldset">
+            <p>For the forum to display times correctly you must select your local time zone. If Daylight Savings Time is in effect you should also check the option provided which will advance times by 1 hour.</p>
+            <label>Time zone<br>
+              <select id="time_zone" name="timezone">
+                <option value="-12">(UTC-12:00) International Date Line West</option>
+                <option value="-11">(UTC-11:00) Niue, Samoa</option>
+                <option value="-10">(UTC-10:00) Hawaii-Aleutian, Cook Island</option>
+                <option value="-9">(UTC-09:00) Alaska, Gambier Island</option>
+                <option value="-8">(UTC-08:00) Pacific</option>
+                <option value="-7">(UTC-07:00) Mountain</option>
+                <option value="-6">(UTC-06:00) Central</option>
+                <option value="-5">(UTC-05:00) Eastern</option>
+                <option value="-4">(UTC-04:00) Atlantic</option>
+                <option value="-3">(UTC-03:00) Amazon, Central Greenland</option>
+                <option value="-2">(UTC-02:00) Mid-Atlantic</option>
+                <option value="-1">(UTC-01:00) Azores, Cape Verde, Eastern Greenland</option>
+                <option value="0">(UTC) Western European, Greenwich</option>
+                <option value="1">(UTC+01:00) Central European, West African</option>
+                <option value="2">(UTC+02:00) Eastern European, Central African</option>
+                <option value="3" selected>(UTC+03:00) Eastern African</option>
+                <option value="4">(UTC+04:00) Moscow, Gulf, Samara</option>
+                <option value="5">(UTC+05:00) Pakistan</option>
+                <option value="6">(UTC+06:00) Bangladesh, Bhutan, Yekaterinburg</option>
+                <option value="7">(UTC+07:00) Indochina, Novosibirsk</option>
+                <option value="8">(UTC+08:00) Greater China, Australian Western, Krasnoyarsk</option>
+                <option value="9">(UTC+09:00) Japan, Korea, Chita, Irkutsk</option>
+                <option value="10">(UTC+10:00) Australian Eastern</option>
+                <option value="11">(UTC+11:00) Solomon Island, Vladivostok</option>
+                <option value="12">(UTC+12:00) New Zealand, Fiji, Magadan</option>
+              </select>
+              <br>
+            </label>
+            <div class="rbox">
+              <label><input type="checkbox" name="dst" value="1">Daylight Savings Time is in effect (advance time by 1 hour).<br></label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="inform">
+        <fieldset>
+          <legend>Set your privacy options</legend>
+          <div class="infldset">
+            <p>Select whether you want your email address to be viewable to other users or not and if you want other users to be able to send you email via the forum (form email) or not.</p>
+            <div class="rbox">
+              <label><input type="radio" name="email_setting" value="0">Display your email address to other users.<br></label>
+              <label><input type="radio" name="email_setting" value="1">Hide your email address but allow form email.<br></label>
+              <label><input type="radio" name="email_setting" value="2" checked>Hide your email address and disallow form email.<br></label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="inform">
+        <fieldset>
+          <legend>Are you a human?</legend>
+          <div class="infldset">
+            <p>Please prove that you're a human being.</p>
+            <label class="captcha-box">
+              <input type="checkbox" name="human_check" value="1">
+              <span>I'm not a robot</span>
+              <em>reCAPTCHA</em>
+            </label>
+          </div>
+        </fieldset>
+      </div>
+
+      <p class="buttons"><input class="button" type="submit" name="register" value="Register"></p>
+    </form>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var select = document.getElementById("time_zone");
+    if (select) select.value = ((0 - new Date().getTimezoneOffset()) / 60).toString();
+  })();
+</script>
+
+<%- include("partials/footer", { year }) %>

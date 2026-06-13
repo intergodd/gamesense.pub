@@ -1,0 +1,15 @@
+<%- include("partials/header", { title, user, siteName, year }) %>
+
+<div id="msg" class="block">
+  <h2><span><%= title %></span></h2>
+  <div class="box">
+    <div class="inbox">
+      <p><%= message %></p>
+      <% if (back) { %>
+        <p><a href="javascript: history.go(-1)">Go back</a></p>
+      <% } %>
+    </div>
+  </div>
+</div>
+
+<%- include("partials/footer", { year }) %>

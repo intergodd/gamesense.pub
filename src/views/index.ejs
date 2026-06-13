@@ -1,0 +1,58 @@
+<%- include("partials/header", { title, user, siteName, year }) %>
+
+<div class="blocktable">
+  <h2><span>Forums</span></h2>
+  <div class="box">
+    <div class="inbox">
+      <table>
+        <thead>
+          <tr>
+            <th class="tcl">Forum</th>
+            <th class="tc2">Topics</th>
+            <th class="tc3">Posts</th>
+            <th class="tcr">Last post</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% categories.forEach(function(category) { %>
+            <tr class="rowodd">
+              <td class="tcl">
+                <div class="icon"><div></div></div>
+                <div class="tclcon">
+                  <h3><a href="/forum/category/<%= category.id %>"><%= category.title %></a></h3>
+                  <p class="forumdesc"><%= category.description %></p>
+                </div>
+              </td>
+              <td class="tc2"><%= category.thread_count %></td>
+              <td class="tc3"><%= category.post_count %></td>
+              <td class="tcr"><%= category.last_post || "Never" %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div id="brdstats" class="block">
+  <h2><span>Board statistics</span></h2>
+  <div class="box">
+    <div class="inbox">
+      <dl class="conl">
+        <dt>Board information</dt>
+        <dd><strong><%= stats.topics.toLocaleString("en-US") %></strong> topics</dd>
+        <dd><strong><%= stats.posts.toLocaleString("en-US") %></strong> posts</dd>
+        <dd><strong><%= stats.users.toLocaleString("en-US") %></strong> registered users</dd>
+        <dd>Newest registered user: <a href="/user/<%= stats.newestMember %>"><%= stats.newestMember %></a></dd>
+      </dl>
+      <dl class="conr">
+        <dt>Online</dt>
+        <dd><strong><%= stats.online %></strong> users online</dd>
+        <dd><%= Math.max(1, Math.floor(stats.online / 4)) %> members, <%= stats.online - Math.max(1, Math.floor(stats.online / 4)) %> guests</dd>
+      </dl>
+      <div class="clearer"></div>
+    </div>
+  </div>
+</div>
+
+<%- include("partials/footer", { year }) %>

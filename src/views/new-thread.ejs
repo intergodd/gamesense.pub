@@ -1,0 +1,26 @@
+<%- include("partials/header", { title, user, siteName, year }) %>
+
+<div class="linkst">
+  <div class="crumbs"><ul><li><a href="/">Index</a></li><li> » <a href="/forum/category/<%= category.id %>"><%= category.title %></a></li><li> » New topic</li></ul></div>
+</div>
+
+<div class="blockform">
+  <h2><span>Post new topic</span></h2>
+  <div class="box">
+    <form method="post" action="/forum/category/<%= category.id %>/new">
+      <div class="inform">
+        <% if (error) { %><div class="forminfo contains-error"><p><%= error %></p></div><% } %>
+        <fieldset>
+          <legend>Topic details</legend>
+          <div class="infldset">
+            <label>Subject<br><input class="longinput" type="text" name="title"></label>
+            <label>Message<br><textarea class="longinput" name="body" rows="8"></textarea></label>
+          </div>
+        </fieldset>
+      </div>
+      <p class="buttons"><input type="submit" value="Submit topic"></p>
+    </form>
+  </div>
+</div>
+
+<%- include("partials/footer", { year }) %>

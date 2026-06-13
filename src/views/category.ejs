@@ -1,0 +1,40 @@
+<%- include("partials/header", { title, user, siteName, year }) %>
+
+<div class="linkst">
+  <div class="crumbs"><ul><li><a href="/">Index</a></li><li> » <%= category.title %></li></ul></div>
+  <div class="postlink"><a href="/forum/category/<%= category.id %>/new">Post new topic</a></div>
+  <div class="clearer"></div>
+</div>
+
+<div class="blocktable">
+  <h2><span><%= category.title %></span></h2>
+  <div class="box">
+    <div class="inbox">
+      <table>
+        <thead>
+          <tr>
+            <th class="tcl">Topic</th>
+            <th class="tc2">Replies</th>
+            <th class="tc3">Author</th>
+            <th class="tcr">Posted</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (!threads.length) { %>
+            <tr class="rowodd"><td class="tcl" colspan="4">No topics in this forum.</td></tr>
+          <% } %>
+          <% threads.forEach(function(thread) { %>
+            <tr class="rowodd">
+              <td class="tcl"><h3><a href="/forum/thread/<%= thread.id %>"><%= thread.title %></a></h3></td>
+              <td class="tc2"><%= thread.reply_count %></td>
+              <td class="tc3"><a href="/user/<%= thread.username %>"><%= thread.username %></a></td>
+              <td class="tcr"><%= thread.created_at %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<%- include("partials/footer", { year }) %>

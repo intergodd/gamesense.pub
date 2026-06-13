@@ -1,0 +1,60 @@
+<%- include("partials/header", { title, user, siteName, year }) %>
+
+<div class="linkst">
+  <div class="crumbs"><ul><li><a href="/">Index</a></li><li> » <%= thread.title %></li></ul></div>
+</div>
+
+<div class="blockpost">
+  <h2><span><%= thread.title %></span><span class="conr">#1</span></h2>
+  <div class="box">
+    <div class="postleft">
+      <dl>
+        <dt><a href="/user/<%= thread.username %>"><%= thread.username %></a></dt>
+        <dd>member</dd>
+      </dl>
+    </div>
+    <div class="postright">
+      <div class="postmsg">
+        <p><%= thread.body %></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% posts.forEach(function(post, index) { %>
+  <div class="blockpost">
+    <h2><span>Reply</span><span class="conr">#<%= index + 2 %></span></h2>
+    <div class="box">
+      <div class="postleft">
+        <dl>
+          <dt><a href="/user/<%= post.username %>"><%= post.username %></a></dt>
+          <dd><%= post.role %></dd>
+        </dl>
+      </div>
+      <div class="postright">
+        <div class="postmsg">
+          <p><%= post.body %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+<% }) %>
+
+<div class="blockform">
+  <h2><span>Post reply</span></h2>
+  <div class="box">
+    <form method="post" action="/forum/thread/<%= thread.id %>/reply">
+      <div class="inform">
+        <fieldset>
+          <legend>Message</legend>
+          <div class="infldset">
+            <label><textarea name="body" rows="6" class="longinput"></textarea></label>
+          </div>
+        </fieldset>
+      </div>
+      <p class="buttons"><input type="submit" value="Submit"></p>
+    </form>
+  </div>
+</div>
+
+<%- include("partials/footer", { year }) %>
