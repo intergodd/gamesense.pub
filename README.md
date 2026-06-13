@@ -1,5 +1,5 @@
 # gamesense.pub
-![Forum Screenshot](screenshot.png)
+![Forum Screenshot](screenshot.jpg)
 
 
 
